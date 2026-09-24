@@ -1,0 +1,124 @@
+# SPDX-License-Identifier: Apache-2.0
+name: dogfood
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  own-implementation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        with:
+          mode: verify-impl
+          command: python3 ${{ github.workspace }}/tests/dogfood/verify_own.py
+
+  agentoracle-v1-implementation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        with:
+          mode: verify-impl
+          command: python3 ${{ github.workspace }}/tests/dogfood/verify_agentoracle.py
+
+  broken-implementation-must-fail:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: broken
+        uses: ./
+        continue-on-error: true
+        with:
+          mode: verify-impl
+          command: python3 ${{ github.workspace }}/tests/dogfood/verify_broken.py
+      - name: assert the broken implementation was caught
+        run: |
+          if [ "${{ steps.broken.outcome }}" != "failure" ]; then
+            echo "::error::verify_broken.py should have failed conformance but the Action passed it"
+            exit 1
+          fi
+          echo "broken implementation correctly detected as non-conformant"
+
+  vendored-fixtures:
+    # Exercises --mode verify-vendored — the mode a real adopter (vstantch/aps-conformance-suite)
+    # uses today by vendorizing our fixtures byte-identical. Never covered by CI before this job:
+    # a regression here would only surface when an external adopter reported it broken.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        with:
+          mode: verify-vendored
+          fixtures-path: ${{ github.workspace }}/tests/dogfood/vendored-fixtures-good
+
+  uppercase-hex-implementation:
+    # The spec does not mandate lowercase digest output. Proves the grader normalizes
+    # case before comparing (see tests/mutation/run_mutation_tests.py, M1).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        with:
+          mode: verify-impl
+          command: python3 ${{ github.workspace }}/tests/dogfood/verify_uppercase.py
+
+  crash-after-print-must-fail:
+    # Correct digest on stdout, then a non-zero exit (simulated crash right after the
+    # write). Proves the grader still requires exit code 0 (see run_mutation_tests.py, M3).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: crash
+        uses: ./
+        continue-on-error: true
+        with:
+          mode: verify-impl
+          command: python3 ${{ github.workspace }}/tests/dogfood/verify_crash_after_print.py
+      - name: assert the crash-after-print implementation was caught
+        run: |
+          if [ "${{ steps.crash.outcome }}" != "failure" ]; then
+            echo "::error::verify_crash_after_print.py should have failed conformance (non-zero exit) but the Action passed it"
+            exit 1
+          fi
+          echo "crash-after-print implementation correctly detected as non-conformant"
+
+  manifest-v1-portable:
+    # Runs the portable, language-neutral manifest/ set (../manifest/verify.py) directly —
+    # distinct from the Action's own verify-vendored mode above, which only checks that
+    # positives are present byte-identical in a vendored copy. This job proves the manifest
+    # itself (positives + full 9-vector negative set + reason-code coverage) is self-consistent
+    # on every push, not just when an external adopter runs it.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 manifest/verify.py
+
+  manifest-v2-portable:
+    # Same shape as manifest-v1-portable, for the additive action-ref-v2 (domain-separated)
+    # profile — see manifest-v2/README.md and docs/rfcs/002-action-ref-v2-domain-separation.md
+    # in argentum-core for the collision risk the 3 negative vectors demonstrate.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 manifest-v2/verify.py
+
+  vendored-fixtures-broken-must-fail:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: broken-vendored
+        uses: ./
+        continue-on-error: true
+        with:
+          mode: verify-vendored
+          fixtures-path: ${{ github.workspace }}/tests/dogfood/vendored-fixtures-broken
+      - name: assert the drifted vendored fixture was caught
+        run: |
+          if [ "${{ steps.broken-vendored.outcome }}" != "failure" ]; then
+            echo "::error::a vendored fixture with a wrong action_ref should have failed conformance but the Action passed it"
+            exit 1
+          fi
+          echo "drifted vendored fixture correctly detected as non-conformant"

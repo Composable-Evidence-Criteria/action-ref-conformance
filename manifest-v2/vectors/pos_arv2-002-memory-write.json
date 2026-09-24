@@ -1,0 +1,11 @@
+{
+  "id": "arv2-002-memory-write",
+  "preimage": {
+    "agent_id": "giskard-self",
+    "action_type": "memory_write",
+    "scope": "mycelium:memory:session_context_v3",
+    "timestamp": "2026-05-26T20:15:00.000Z"
+  },
+  "action_ref_v1": "36fe8d0559bb254c20cdb0e7a0c83e53f0434fc076e856ff769444da2a73b0b4",
+  "action_ref_v2": "v2:1ad5c8fb32817215a0dee78f8ac0160b4b81c8d61e86522830b10e65eda673d6"
+}

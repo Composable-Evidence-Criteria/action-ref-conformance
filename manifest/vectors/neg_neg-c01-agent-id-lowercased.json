@@ -1,0 +1,12 @@
+{
+  "id": "neg-c01-agent-id-lowercased",
+  "failure_mode": "casing_drift",
+  "invocation_payload": {
+    "action_type": "delegation.execute",
+    "agent_id": "did:aps:zAgentExample",
+    "scope": "aps:delegation",
+    "timestamp": "2026-06-11T14:00:00.000Z"
+  },
+  "claimed_action_ref": "b63e4aba6b21f718cbd425972fe536b77645578d2cf4320074a9f9a01b887c65",
+  "correct_action_ref": "b5499f92b80552fa63518f9bf54095895cfd3f5b0c928914ae0b5789f8a54e28"
+}

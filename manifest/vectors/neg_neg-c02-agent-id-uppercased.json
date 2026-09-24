@@ -1,0 +1,12 @@
+{
+  "id": "neg-c02-agent-id-uppercased",
+  "failure_mode": "casing_drift",
+  "invocation_payload": {
+    "action_type": "payment.send",
+    "agent_id": "did:aps:zagent",
+    "scope": "aps:payments",
+    "timestamp": "2026-06-11T14:05:00.000Z"
+  },
+  "claimed_action_ref": "2d555e3e5191b7ebd935f3e2d9aaddaf7c3fb8fd478e8b6c0b407e22266b1303",
+  "correct_action_ref": "a7351a1d995d00e650a0c6051e9301e42880538068fdaa262d69cbed6c96e4c7"
+}

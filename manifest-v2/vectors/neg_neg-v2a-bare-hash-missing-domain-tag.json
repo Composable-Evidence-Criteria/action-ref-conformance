@@ -1,0 +1,13 @@
+{
+  "id": "neg-v2a-bare-hash-missing-domain-tag",
+  "failure_mode": "cross_protocol_collision_risk",
+  "preimage": {
+    "agent_id": "nexus-agent-xa12.onrender.com",
+    "action_type": "oracle.signal",
+    "scope": "BTC",
+    "timestamp": "2025-05-18T11:40:31.000Z"
+  },
+  "claimed_action_ref_v2": "fdd7f810499f06be24355ca8e2bfb8c4b965cc80c838f41fa074683443d89f5a",
+  "correct_action_ref_v2": "v2:a978a3fe6858ac212091304c618f8ce40d024f2b9bb8e26cfaddf73a8812bf76",
+  "note": "The claimed value is the bare v1 digest of this preimage (no domain tag, no 'v2:' marker) presented as if it were a v2 action_ref. This is the exact collision class that motivated the v1->v2 split: SHA-256(JCS(preimage)) is a pure function of the four field values, so any other protocol that independently arrives at the same four-field JCS shape produces byte-identical output for the same underlying real-world event, with nothing in the hash itself to say which spec emitted it. A conformant v2 verifier must reject a claim that a bare, untagged 64-hex digest satisfies the v2 profile -- accepting it would mean action_ref alone can no longer prove which protocol's rules were applied."
+}

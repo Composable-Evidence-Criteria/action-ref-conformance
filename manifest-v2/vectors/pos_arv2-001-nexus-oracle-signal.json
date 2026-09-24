@@ -1,0 +1,11 @@
+{
+  "id": "arv2-001-nexus-oracle-signal",
+  "preimage": {
+    "agent_id": "nexus-agent-xa12.onrender.com",
+    "action_type": "oracle.signal",
+    "scope": "BTC",
+    "timestamp": "2025-05-18T11:40:31.000Z"
+  },
+  "action_ref_v1": "fdd7f810499f06be24355ca8e2bfb8c4b965cc80c838f41fa074683443d89f5a",
+  "action_ref_v2": "v2:a978a3fe6858ac212091304c618f8ce40d024f2b9bb8e26cfaddf73a8812bf76"
+}

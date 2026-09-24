@@ -1,0 +1,44 @@
+# SPDX-License-Identifier: Apache-2.0
+name: action-ref-conformance
+description: >-
+  Verify an implementation (or vendored fixtures) against the frozen action-ref-v1-jcs-sha256
+  conformance profile. Zero dependencies, no network in the trust path — vectors are vendored
+  inside this Action and pinned by tag.
+author: giskard09
+branding:
+  icon: check-circle
+  color: blue
+
+inputs:
+  mode:
+    description: "verify-impl (run your own command against the vectors) or verify-vendored (check fixtures you vendored into your own repo)"
+    required: false
+    default: verify-impl
+  command:
+    description: >-
+      Required for verify-impl. A shell command that reads a preimage JSON object on stdin
+      and writes the resulting action_ref (hex sha256 digest) to stdout.
+    required: false
+  fixtures-path:
+    description: "Required for verify-vendored. Path to a vendored fixtures JSON file or directory of JSON files."
+    required: false
+
+outputs:
+  report:
+    description: "Path to the JSON conformance report written by this run"
+    value: ${{ steps.run.outputs.report }}
+  passed:
+    description: "true if every vector passed"
+    value: ${{ steps.run.outputs.passed }}
+
+runs:
+  using: composite
+  steps:
+    - id: run
+      shell: bash
+      run: |
+        python3 "${{ github.action_path }}/src/run.py" \
+          --mode "${{ inputs.mode }}" \
+          --command "${{ inputs.command }}" \
+          --fixtures-path "${{ inputs.fixtures-path }}" \
+          --vectors "${{ github.action_path }}/vectors/action-ref-v1-jcs-sha256.json"

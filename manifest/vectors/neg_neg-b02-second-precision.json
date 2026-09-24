@@ -1,0 +1,12 @@
+{
+  "id": "neg-b02-second-precision",
+  "failure_mode": "timestamp_form_drift",
+  "invocation_payload": {
+    "action_type": "oracle.signal",
+    "agent_id": "nexus-agent-xa12.onrender.com",
+    "scope": "BTC",
+    "timestamp": "2026-06-11T08:45:00.000Z"
+  },
+  "claimed_action_ref": "48862e6601dcdf9b951fbe1b41a9113231e02e775567813531ad8eb3ad8ee451",
+  "correct_action_ref": "d73b70c4c8fc900c54de705cb5d53bb735f774e1b248e9c975cc39bd06e9485b"
+}

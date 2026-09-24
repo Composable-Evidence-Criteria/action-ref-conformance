@@ -1,0 +1,90 @@
+{
+  "profile": "action-ref-v1-jcs-sha256",
+  "version": 1,
+  "spec": "https://github.com/giskard09/argentum-core/blob/action-ref-v1.0/docs/spec/action-ref.md",
+  "note": "Expected verdicts for the action-ref-v1 conformance vectors. A conformant verifier recomputes action_ref = SHA-256(JCS(preimage)) over the 4-field tuple {action_type, agent_id, scope, timestamp}. It MUST reproduce PASS on positives (byte-identical digest) and MUST reproduce REJECT on negatives (either at the timestamp-grammar gate, reason=grammar_reject, before hashing at all; or by a digest mismatch against the tuple as received, reason=recompute_mismatch). A verifier that matches any claimed_action_ref in a REJECT vector has a conformance bug: it means an attacker could construct a colliding claim from a non-canonical byte form. The run must observe both verdicts and exercise every declared reason code \u2014 see verify.py.",
+  "reject_reasons": {
+    "grammar_reject": "timestamp is not a string in canonical RFC 3339 UTC form before hashing is attempted",
+    "recompute_mismatch": "recomputed SHA-256(JCS(invocation_payload)) does not equal the claimed action_ref"
+  },
+  "vectors": [
+    {
+      "file": "pos_0001-giskard-baseline.json",
+      "expect": "PASS",
+      "reason": null,
+      "failure_mode": null
+    },
+    {
+      "file": "pos_0002-dual-timestamps.json",
+      "expect": "PASS",
+      "reason": null,
+      "failure_mode": null
+    },
+    {
+      "file": "pos_0003-scope-namespace-collision-proof-prefixed.json",
+      "expect": "PASS",
+      "reason": null,
+      "failure_mode": null
+    },
+    {
+      "file": "pos_0003-scope-namespace-collision-proof-unprefixed.json",
+      "expect": "PASS",
+      "reason": null,
+      "failure_mode": null
+    },
+    {
+      "file": "neg_neg-a01-received-order.json",
+      "expect": "REJECT",
+      "reason": "recompute_mismatch",
+      "failure_mode": "field_order_drift"
+    },
+    {
+      "file": "neg_neg-a02-reversed-order.json",
+      "expect": "REJECT",
+      "reason": "recompute_mismatch",
+      "failure_mode": "field_order_drift"
+    },
+    {
+      "file": "neg_neg-b01-epoch-integer.json",
+      "expect": "REJECT",
+      "reason": "grammar_reject",
+      "failure_mode": "timestamp_form_drift"
+    },
+    {
+      "file": "neg_neg-b02-second-precision.json",
+      "expect": "REJECT",
+      "reason": "recompute_mismatch",
+      "failure_mode": "timestamp_form_drift"
+    },
+    {
+      "file": "neg_neg-b03-microsecond-precision.json",
+      "expect": "REJECT",
+      "reason": "recompute_mismatch",
+      "failure_mode": "timestamp_form_drift"
+    },
+    {
+      "file": "neg_neg-c01-agent-id-lowercased.json",
+      "expect": "REJECT",
+      "reason": "recompute_mismatch",
+      "failure_mode": "casing_drift"
+    },
+    {
+      "file": "neg_neg-c02-agent-id-uppercased.json",
+      "expect": "REJECT",
+      "reason": "recompute_mismatch",
+      "failure_mode": "casing_drift"
+    },
+    {
+      "file": "neg_neg-d01-scope-changed.json",
+      "expect": "REJECT",
+      "reason": "recompute_mismatch",
+      "failure_mode": "payload_drift"
+    },
+    {
+      "file": "neg_neg-d02-action-type-changed.json",
+      "expect": "REJECT",
+      "reason": "recompute_mismatch",
+      "failure_mode": "payload_drift"
+    }
+  ]
+}

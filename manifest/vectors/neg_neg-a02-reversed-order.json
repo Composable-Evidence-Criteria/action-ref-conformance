@@ -1,0 +1,12 @@
+{
+  "id": "neg-a02-reversed-order",
+  "failure_mode": "field_order_drift",
+  "invocation_payload": {
+    "action_type": "trail.anchor",
+    "agent_id": "giskard-self",
+    "scope": "mycelium:baseline",
+    "timestamp": "2026-06-11T12:05:00.000Z"
+  },
+  "claimed_action_ref": "9c34dad62de307e4c65e34a56b83fa91be9efe221682580d8ed6813ecb9d1288",
+  "correct_action_ref": "6f028fc93f87cca54a0251da90a8de03c50c4cb19a8a915fa28b382959ce8c92"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "0001-giskard-baseline",
+  "preimage": {
+    "action_type": "trail.anchor",
+    "agent_id": "giskard-self",
+    "scope": "mycelium:baseline",
+    "timestamp": "2026-05-23T00:00:00.000Z"
+  },
+  "action_ref": "f4ebda732e3c063bdd8547c734e4956f009bbed7f557cb949f7c8033e8c42d1d"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "arv2-003-payment-send",
+  "preimage": {
+    "agent_id": "agent:custody-example",
+    "action_type": "payment.send",
+    "scope": "vendor:invoice-9182",
+    "timestamp": "2026-07-29T12:00:00.500Z"
+  },
+  "action_ref_v1": "6500565f1ecf62c9797604d3b05fff439bb1904a5568faf604cf46a1f08eb29e",
+  "action_ref_v2": "v2:769cc9105f1307ab9a2b40ebacf535b77343fc9272e6f431918720b3e9759710"
+}

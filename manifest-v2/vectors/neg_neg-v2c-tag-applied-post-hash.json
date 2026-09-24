@@ -1,0 +1,13 @@
+{
+  "id": "neg-v2c-tag-applied-post-hash",
+  "failure_mode": "tag_applied_post_hash",
+  "preimage": {
+    "agent_id": "agent:custody-example",
+    "action_type": "payment.send",
+    "scope": "vendor:invoice-9182",
+    "timestamp": "2026-07-29T12:00:00.500Z"
+  },
+  "claimed_action_ref_v2": "v2:a50344dfc26ff53adf4d146861b0000a9a725087c0dcd2a8df1f05bf0256c3b4",
+  "correct_action_ref_v2": "v2:769cc9105f1307ab9a2b40ebacf535b77343fc9272e6f431918720b3e9759710",
+  "note": "The claimed value comes from a buggy implementation that computes SHA-256(domain_tag + v1_hash_hex) -- hashing the domain tag concatenated with the already-computed v1 digest's hex string -- instead of the spec's SHA-256(domain_tag + JCS(preimage)), which prepends the tag to the canonical preimage bytes before hashing once. Bolting the tag on after the fact defeats domain separation's purpose: the inner v1 hash is still a bare, undomain-separated digest of the four fields, so the underlying collision risk this profile exists to close is still present one layer down, just wrapped in an extra hash that looks superficially like a valid v2 value. A conformant verifier must reject any v2 claim that does not match SHA-256(domain_tag + JCS(preimage)) computed directly over the canonical preimage bytes."
+}

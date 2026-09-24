@@ -1,0 +1,12 @@
+{
+  "id": "neg-b01-epoch-integer",
+  "failure_mode": "timestamp_form_drift",
+  "invocation_payload": {
+    "action_type": "oracle.signal",
+    "agent_id": "nexus-agent-xa12.onrender.com",
+    "scope": "BTC",
+    "timestamp": 1781166600123
+  },
+  "claimed_action_ref": "d807275082611d69aa0cf3fbd265ac52df68c380eb32e7e6614bc9df61415763",
+  "correct_action_ref": "d461626a9ef4b3ab7fe59f2c5392d24143efc98306720bfa1f41373ce2326e10"
+}

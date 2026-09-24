@@ -1,0 +1,12 @@
+{
+  "id": "neg-d01-scope-changed",
+  "failure_mode": "payload_drift",
+  "invocation_payload": {
+    "action_type": "payment.send",
+    "agent_id": "pioneer-agent-001",
+    "scope": "argentum:payments:send",
+    "timestamp": "2026-06-11T16:00:00.000Z"
+  },
+  "claimed_action_ref": "1bf527c864278ecbb6a1da5158264efd966fc29db453d88b6e7b658654493c7a",
+  "correct_action_ref": "4aea72656c085069fca26571158db1319c33456f704d78587904f1c2a28b16fe"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "0003-scope-namespace-collision-proof-prefixed",
+  "preimage": {
+    "action_type": "compliance.screen",
+    "agent_id": "algovoi-agent",
+    "scope": "algovoi:compliance_screen",
+    "timestamp": "2026-05-23T12:00:00.000Z"
+  },
+  "action_ref": "4e32a383d2174c0f106369f36bec8ab747fd1a368508adba6fa9f6798377877e"
+}

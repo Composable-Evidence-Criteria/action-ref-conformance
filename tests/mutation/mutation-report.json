@@ -1,0 +1,109 @@
+{
+  "baseline": {
+    "own_conformant": true,
+    "agentoracle_conformant": true,
+    "uppercase_conformant": true,
+    "broken_correctly_rejected": true,
+    "crash_after_print_correctly_rejected": true,
+    "vendored_good_passes": true,
+    "vendored_broken_correctly_rejected": true
+  },
+  "mutants": [
+    {
+      "id": "M1-drop-lowercase-positive",
+      "desc": "positive-vector compare stops lowercasing before ==, so a conformant impl that emits uppercase hex (spec doesn't forbid it) would wrongly FAIL.",
+      "find": "got.lower() == expected.lower()",
+      "replace": "got == expected",
+      "status": "KILLED",
+      "outcome": {
+        "own_conformant": true,
+        "agentoracle_conformant": true,
+        "uppercase_conformant": false,
+        "broken_correctly_rejected": true,
+        "crash_after_print_correctly_rejected": true,
+        "vendored_good_passes": true,
+        "vendored_broken_correctly_rejected": true
+      }
+    },
+    {
+      "id": "M2-invert-positive-passed",
+      "desc": "positive-vector pass condition inverted (== -> !=): a correct impl would be graded non-conformant and a wrong one conformant.",
+      "find": "passed = (code == 0) and (got.lower() == expected.lower())",
+      "replace": "passed = (code == 0) and (got.lower() != expected.lower())",
+      "status": "KILLED",
+      "outcome": {
+        "own_conformant": false,
+        "agentoracle_conformant": false,
+        "uppercase_conformant": false,
+        "broken_correctly_rejected": true,
+        "crash_after_print_correctly_rejected": true,
+        "vendored_good_passes": true,
+        "vendored_broken_correctly_rejected": true
+      }
+    },
+    {
+      "id": "M3-drop-exitcode-check-positive",
+      "desc": "positive-vector pass condition drops the exit-code gate: an impl that crashes but happens to print the right digest to stdout before crashing would still be graded conformant.",
+      "find": "passed = (code == 0) and (got.lower() == expected.lower())",
+      "replace": "passed = (got.lower() == expected.lower())",
+      "status": "KILLED",
+      "outcome": {
+        "own_conformant": true,
+        "agentoracle_conformant": true,
+        "uppercase_conformant": true,
+        "broken_correctly_rejected": true,
+        "crash_after_print_correctly_rejected": false,
+        "vendored_good_passes": true,
+        "vendored_broken_correctly_rejected": true
+      }
+    },
+    {
+      "id": "M4-invert-negative-reject-gate",
+      "desc": "negative-vector auto-pass-on-reject condition inverted: an impl that correctly rejects a malformed/forgeable input (non-zero exit) is now graded as failing that vector.",
+      "find": "if code != 0 or not got:",
+      "replace": "if code == 0 or not got:",
+      "status": "KILLED",
+      "outcome": {
+        "own_conformant": true,
+        "agentoracle_conformant": true,
+        "uppercase_conformant": true,
+        "broken_correctly_rejected": false,
+        "crash_after_print_correctly_rejected": true,
+        "vendored_good_passes": true,
+        "vendored_broken_correctly_rejected": true
+      }
+    },
+    {
+      "id": "M5-invert-negative-forbidden-check",
+      "desc": "negative-vector forbidden-hash comparison inverted (!= -> ==): an impl that silently reproduces the forbidden/forgeable hash (the exact bug this vector exists to catch) would be graded conformant.",
+      "find": "passed = got.lower() != forbidden.lower()",
+      "replace": "passed = got.lower() == forbidden.lower()",
+      "status": "KILLED",
+      "outcome": {
+        "own_conformant": false,
+        "agentoracle_conformant": false,
+        "uppercase_conformant": false,
+        "broken_correctly_rejected": true,
+        "crash_after_print_correctly_rejected": true,
+        "vendored_good_passes": true,
+        "vendored_broken_correctly_rejected": true
+      }
+    },
+    {
+      "id": "M6-drop-lowercase-vendored",
+      "desc": "verify-vendored compare stops lowercasing before ==, same class as M1 but on the vendored-fixture path (not exercised by tests.yml at all).",
+      "find": "\"passed\": got.lower() == expected.lower()}",
+      "replace": "\"passed\": got == expected}",
+      "status": "KILLED",
+      "outcome": {
+        "own_conformant": true,
+        "agentoracle_conformant": true,
+        "uppercase_conformant": true,
+        "broken_correctly_rejected": true,
+        "crash_after_print_correctly_rejected": true,
+        "vendored_good_passes": false,
+        "vendored_broken_correctly_rejected": true
+      }
+    }
+  ]
+}

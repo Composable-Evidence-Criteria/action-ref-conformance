@@ -1,0 +1,51 @@
+{
+  "profile": "action-ref-v2-domain-separated",
+  "version": 2,
+  "spec": "https://github.com/giskard09/argentum-core/blob/main/docs/spec/action-ref.md#version-negotiation",
+  "rfc": "https://github.com/giskard09/argentum-core/blob/main/docs/rfcs/002-action-ref-v2-domain-separation.md",
+  "domain_tag": "mycelium.action-ref:v2:",
+  "note": "Expected verdicts for the action-ref-v2 conformance vectors. v2 preimage and field set are IDENTICAL to v1 -- {action_type, agent_id, scope, timestamp}, same JCS canonicalization -- only a fixed domain tag ('mycelium.action-ref:v2:') is prepended to the canonical JSON bytes before hashing, and the resulting hex digest is prefixed 'v2:'. This is ADDITIVE to the v1 profile (see ../manifest/), not a replacement: v1 hashes remain permanently valid and are never retroactively invalidated. A conformant v2 verifier MUST reproduce PASS on positives (byte-identical v1 and v2 digest, non-colliding) and MUST reproduce REJECT on negatives, each exercising a distinct way domain separation can be broken or bypassed -- see reject_reasons and verify.py.",
+  "reject_reasons": {
+    "cross_protocol_collision_risk": "a bare, untagged 64-hex digest (indistinguishable from any other bare-SHA-256(JCS(4-field-object)) scheme) is presented as satisfying the v2 profile -- exactly the collision class the v1->v2 split exists to close, documented in RFC 002",
+    "wrong_domain_tag": "the claimed v2 value was computed under a domain tag other than the one this spec defines ('mycelium.action-ref:v2:') -- a generic or differently-scoped tag does not close cross-protocol collision, it just moves the collision surface to the tag namespace itself",
+    "tag_applied_post_hash": "the claimed v2 value hashes the domain tag together with an already-computed v1 digest's hex string, instead of prepending the tag to the canonical preimage bytes before hashing once -- defeats domain separation by leaving a bare, undomain-separated hash one layer underneath"
+  },
+  "vectors": [
+    {
+      "file": "pos_arv2-001-nexus-oracle-signal.json",
+      "expect": "PASS",
+      "reason": null,
+      "failure_mode": null
+    },
+    {
+      "file": "pos_arv2-002-memory-write.json",
+      "expect": "PASS",
+      "reason": null,
+      "failure_mode": null
+    },
+    {
+      "file": "pos_arv2-003-payment-send.json",
+      "expect": "PASS",
+      "reason": null,
+      "failure_mode": null
+    },
+    {
+      "file": "neg_neg-v2a-bare-hash-missing-domain-tag.json",
+      "expect": "REJECT",
+      "reason": "cross_protocol_collision_risk",
+      "failure_mode": "cross_protocol_collision_risk"
+    },
+    {
+      "file": "neg_neg-v2b-wrong-domain-tag.json",
+      "expect": "REJECT",
+      "reason": "wrong_domain_tag",
+      "failure_mode": "wrong_domain_tag"
+    },
+    {
+      "file": "neg_neg-v2c-tag-applied-post-hash.json",
+      "expect": "REJECT",
+      "reason": "tag_applied_post_hash",
+      "failure_mode": "tag_applied_post_hash"
+    }
+  ]
+}

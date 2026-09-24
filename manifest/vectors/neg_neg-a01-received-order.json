@@ -1,0 +1,12 @@
+{
+  "id": "neg-a01-received-order",
+  "failure_mode": "field_order_drift",
+  "invocation_payload": {
+    "action_type": "payment.send",
+    "agent_id": "pioneer-agent-001",
+    "scope": "nobulex:bilateral",
+    "timestamp": "2026-06-11T12:00:00.000Z"
+  },
+  "claimed_action_ref": "5fcfb5213cbb304570a3cf4e2f472feba3cf9fd8c13410f14a45431fc9f72dd6",
+  "correct_action_ref": "fefa13abb3765bc5f9279b49ea5507a406799b7076611e1238e482cbd5dfb32d"
+}

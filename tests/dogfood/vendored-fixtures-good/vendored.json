@@ -1,0 +1,20 @@
+{
+  "positives": [
+    {
+      "id": "0001-giskard-baseline",
+      "action_ref": "F4EBDA732E3C063BDD8547C734E4956F009BBED7F557CB949F7C8033E8C42D1D"
+    },
+    {
+      "id": "0002-dual-timestamps",
+      "action_ref": "f09eb8c50dfa27a33cdb36efa08194bcba2d7ac32eb1dd6539fb0c3bc811a8e0"
+    },
+    {
+      "id": "0003-scope-namespace-collision-proof-prefixed",
+      "action_ref": "4e32a383d2174c0f106369f36bec8ab747fd1a368508adba6fa9f6798377877e"
+    },
+    {
+      "id": "0003-scope-namespace-collision-proof-unprefixed",
+      "action_ref": "74cdc8adaa71e995f030e4462dc948fe590042cca13eb48ce525dd8d5cd052ff"
+    }
+  ]
+}

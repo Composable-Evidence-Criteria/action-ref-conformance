@@ -1,0 +1,15 @@
+{
+  "id": "neg-v2b-wrong-domain-tag",
+  "failure_mode": "wrong_domain_tag",
+  "preimage": {
+    "agent_id": "giskard-self",
+    "action_type": "memory_write",
+    "scope": "mycelium:memory:session_context_v3",
+    "timestamp": "2026-05-26T20:15:00.000Z"
+  },
+  "claimed_domain_tag": "action-ref:v2:",
+  "claimed_action_ref_v2": "v2:07f6e497ac972a97332066d21c03eb341407ccfe8a0cfdd542879029ef5b3382",
+  "correct_domain_tag": "mycelium.action-ref:v2:",
+  "correct_action_ref_v2": "v2:1ad5c8fb32817215a0dee78f8ac0160b4b81c8d61e86522830b10e65eda673d6",
+  "note": "The claimed value uses 'action-ref:v2:' -- the generic, spec-unnamed prefix RFC 002 explicitly considered and rejected in favor of a spec-named tag ('mycelium.action-ref:v2:'). A generic version-only prefix does not close the cross-protocol collision this vector set exists to catch: any other protocol that also decides to call its own domain tag 'action-ref:v2:' collides with ours again, one layer up. A conformant verifier must reject a v2 claim computed under any domain tag other than the one this spec defines -- the tag itself, not just its presence, is part of the profile."
+}
