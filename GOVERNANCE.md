@@ -2,7 +2,7 @@
 
 *Draft, open for review by the initial committers. Nothing here is final until they have reviewed it.*
 
-This repository belongs to the LFDT lab `recomputable-evidence`. It holds test cases that pair evidence records from separately maintained specifications, and the criteria for judging whether those combinations still verify.
+This repository belongs to the LFDT lab `composable-evidence-criteria`. It holds test cases that pair evidence records from separately maintained specifications, and the criteria for judging whether those combinations still verify.
 
 ## Roles
 
