@@ -2,11 +2,11 @@
 
 *Draft, open for review by the initial committers. Nothing here is final until they have reviewed it.*
 
-This repository is the seed of the proposed LFDT lab `recomputable-evidence`. It holds test cases that pair evidence records from separately maintained specifications, and the criteria for judging whether those combinations still verify.
+This repository belongs to the LFDT lab `composable-evidence-criteria`. It holds test cases that pair evidence records from separately maintained specifications, and the criteria for judging whether those combinations still verify.
 
 ## Roles
 
-**Committers** can merge changes. Initial committers: giskard09, azender1, magentixai, kenneives. Until the lab repository is created under LFDT, only giskard09 has write access to this seed repository; merges here follow the rules below anyway. A new committer is added when they have maintained test cases or criteria over time and an existing committer proposes them; the addition needs no objection from the other committers within 7 days. Nobody is listed as a committer before they have accepted.
+**Committers** can merge changes. Initial committers: giskard09, azender1, magentixai, kenneives. Write access to this repository is administered by LF Decentralized Trust. Merges follow the rules below regardless of who holds it. A new committer is added when they have maintained test cases or criteria over time and an existing committer proposes them; the addition needs no objection from the other committers within 7 days. Nobody is listed as a committer before they have accepted.
 
 **Contributors** are anyone who opens an issue or pull request. Running the test cases and reporting a result counts as a contribution; it does not make someone a committer.
 
