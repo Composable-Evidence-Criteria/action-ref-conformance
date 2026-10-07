@@ -31,7 +31,7 @@ Ties declared today:
 - giskard09 maintains the action-ref specification and argentum-core.
 - giskard09 and azender1 have a signed Revenue Share Agreement; azender1's SafeAgent uses action-ref in production.
 - kenneives maintains AgentGraph/AgentAvow.
-- magentixai (Martin Sansone) leads Magentix.AI and steers the x402 Foundation TSC evidence-record charter.
+- magentixai (Martin Sansone) leads Magentix.AI, maintains AXES, and proposed the x402 Foundation TSC evidence-record charter (tsc#4).
 
 A committer adds a new tie to this list when it arises.
 
