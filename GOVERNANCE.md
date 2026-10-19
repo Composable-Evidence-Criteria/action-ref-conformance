@@ -30,10 +30,21 @@ Every committer declares their ties to the specifications and products the lab t
 Ties declared today:
 - giskard09 maintains the action-ref specification and argentum-core.
 - giskard09 and azender1 have a signed Revenue Share Agreement; azender1's SafeAgent uses action-ref in production.
+- giskard09 (Rama) offers paid conformance-QA engagements running this lab's public corpus against a client's implementation, per issue #7.
 - kenneives maintains AgentGraph/AgentAvow.
 - magentixai (Martin Sansone) leads Magentix.AI, maintains AXES, and proposed the x402 Foundation TSC evidence-record charter (tsc#4).
 
 A committer adds a new tie to this list when it arises.
+
+## Commercial use by committers
+
+A committer may offer paid work (an audit, a QA report, a consulting engagement) that runs this lab's public corpus against a third party's implementation. The corpus itself never has a private or client-only version, and a committer's commercial activity is never governed differently than any other declared tie above. The following apply to any such engagement:
+
+- A paid report states it was produced by the committer's own business, not by the lab, and does not describe the result as lab-certified, lab-endorsed or LFDT-endorsed.
+- Any paid result can be reproduced from the public corpus at a pinned commit, without the committer's own tooling.
+- A test case or criterion that comes out of paid work states so in its origin field (rule 2 above already requires an origin field for every test case).
+- Recusal covers reviewing, merging, or marking disputed any test case that a paying client's implementation passes or fails — not only votes in lazy consensus.
+- Committers keep a public list of paid engagements run against the corpus; the client's name is optional in that list, the fact of the engagement is not. That list lives at [`ENGAGEMENTS.md`](ENGAGEMENTS.md) at the root of this repo.
 
 ## Working with other labs
 
