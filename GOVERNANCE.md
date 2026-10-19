@@ -44,7 +44,7 @@ A committer may offer paid work (an audit, a QA report, a consulting engagement)
 - Any paid result can be reproduced from the public corpus at a pinned commit, without the committer's own tooling.
 - A test case or criterion that comes out of paid work states so in its origin field (rule 2 above already requires an origin field for every test case).
 - Recusal covers reviewing, merging, or marking disputed any test case that a paying client's implementation passes or fails — not only votes in lazy consensus.
-- Committers keep a public list of paid engagements run against the corpus; the client's name is optional in that list, the fact of the engagement is not.
+- Committers keep a public list of paid engagements run against the corpus; the client's name is optional in that list, the fact of the engagement is not. That list lives at [`ENGAGEMENTS.md`](ENGAGEMENTS.md) at the root of this repo.
 
 ## Working with other labs
 
