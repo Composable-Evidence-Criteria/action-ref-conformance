@@ -4,4 +4,4 @@ Each folder pairs evidence records from two separately maintained specifications
 
 | Case | Sides | Criterion | Status |
 |---|---|---|---|
-| [0001](0001-x402-authority-axes-correlation/) | x402 PR #3220 `authority` (unmerged, pinned at `72c3704`) and AXES `axes:x402_correlation@1` | The evidence record references the authority and lets a verifier recompute the binding; it never re-asserts the authority as its own | Proposed; awaiting an independent rerun |
+| [0001](0001-x402-authority-axes-correlation/) | x402 PR #3220 `authority` (unmerged, pinned at `72c3704`) and AXES `axes:x402_correlation@1` | The evidence record references the authority and lets a verifier recompute the binding; it never re-asserts the authority as its own | Proposed; rerun independently by giskard09 and kenneives (10/10) |

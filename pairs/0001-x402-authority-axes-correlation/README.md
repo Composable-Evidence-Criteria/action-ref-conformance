@@ -1,6 +1,6 @@
 # Pair 0001: x402 authority mandate with an AXES correlation record
 
-**Status: proposed. Not merged until a committer other than its author reruns it from these bytes (GOVERNANCE rule 1).**
+**Status: proposed. Rerun from the published bytes at `2aba46b` by two committers other than its author (giskard09 and kenneives, 27 Oct 2026), both 10/10; GOVERNANCE rule 1 is met.**
 
 ## Criterion
 
@@ -20,7 +20,8 @@ As proposed in issue #2 and supported there by kenneives and giskard09:
 | Run | By | Independent of the author? | Result |
 |---|---|---|---|
 | `python3 verify.py` on Windows, Python 3.12, 27 Oct 2026 | magentixai | No (author run) | 10/10 vectors match `MANIFEST.json` |
-| Rerun from the published bytes | *open: a committer other than magentixai* | Yes | *pending* |
+| `python3 verify.py` at `2aba46b`, published `inputs/`, `vectors/` and `MANIFEST.json`, `generate.py` not run; Linux, Python 3.12.3, 27 Oct 2026 ([comment](https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10#issuecomment-6441634084)) | giskard09 | Yes | 10/10 vectors match `MANIFEST.json` |
+| `python3 -I verify.py` at `2aba46b`, clean checkout, `generate.py` not run; macOS 27.0.1 arm64, Python 3.9.6, 27 Oct 2026 ([comment](https://github.com/Composable-Evidence-Criteria/action-ref-conformance/pull/10#issuecomment-6448783917)) | kenneives | Yes | 10/10 vectors match `MANIFEST.json`; both verdicts and all 6 reasons exercised |
 
 The author run also cross-checked:
 - the standard-library Ed25519 in `verify.py` accepts the signature #3220 publishes for its model A vector mandate;
